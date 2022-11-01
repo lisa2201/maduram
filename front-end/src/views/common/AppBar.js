@@ -41,7 +41,7 @@ const AppBarMain = () => {
     async function openGallary() {
 
         console.log('working');
-        navigate("/pages/login/login3");
+        navigate("/pages/login/gallary");
 
     }
 
@@ -120,11 +120,14 @@ const AppBarMain = () => {
                                 }}
                             >
                                 <MenuItem >
-                                    <Typography onClick={openGallary} textAlign="center">Gallary</Typography>
-
+                                <Link to='/contact' style={{ textDecoration: 'none' }}>
+                                    <Typography textAlign="center">Contact</Typography>
+                                </Link>
                                 </MenuItem>
                                 <MenuItem >
-                                    <Typography onClick={openGallary} textAlign="center">Gallary</Typography>
+                                <Link to='/gallary' style={{ textDecoration: 'none' }}>
+                                    <Typography textAlign="center">Gallary</Typography>
+                                </Link> 
 
                                 </MenuItem>
                             </Menu>
