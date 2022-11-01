@@ -63,10 +63,8 @@ Router.get('/get-all-brand', async (req, res) => {
             data: brand
 
         })
-
     }
     catch (err) {
-
         console.log(err);
         return res.status(AppsConst.AppsConst.RequestType.CODE_500).json({
             message: err.message,

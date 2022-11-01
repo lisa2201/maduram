@@ -42,6 +42,7 @@ const FirebaseLogin = ({ ...others }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    
     const navigate = useNavigate();
 
     const googleHandler = async () => {
@@ -164,7 +165,6 @@ const FirebaseLogin = ({ ...others }) => {
                                 name="email"
                                 onChange={(e)=> setEmail(e.target.value)}
                                 label="Email"
-                                inputProps={{}}
                             />
                             
                         </FormControl>

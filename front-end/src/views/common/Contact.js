@@ -24,7 +24,7 @@ export default function Contact() {
                 <Container style={{ maxWidth: '100%' }}>
 
                     <Grid container spacing={2} style={{ marginTop: '16px' }}>
-                        <Grid item xs={12} sm={4} md={4} lg={4} style={{ textAlign: 'center', background: 'aliceblue' }}>
+                        <Grid item xs={12} sm={6} md={6} lg={6} style={{ textAlign: 'center', background: 'aliceblue' }}>
                             <Box
                                 component="form"
                                 sx={{
@@ -46,7 +46,7 @@ export default function Contact() {
                             </Box>
                         </Grid>
 
-                        <Grid item xs={12} sm={8} md={8} lg={8} style={{ textAlign: 'center' }}>
+                        <Grid item xs={12} sm={6} md={6} lg={6} style={{ textAlign: 'center' }}>
                             <img src={contactImg} style={{ width: '100%', height: '620px', boxShadow: '0.5', }} />
 
                         </Grid>
