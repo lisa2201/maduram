@@ -38,14 +38,6 @@ const AppBarMain = () => {
 
     }
 
-    async function openGallary() {
-
-        console.log('working');
-        navigate("/pages/login/gallary");
-
-    }
-
-
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
