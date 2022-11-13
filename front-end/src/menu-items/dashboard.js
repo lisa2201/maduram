@@ -40,21 +40,6 @@ const dashboard = {
             url: '/utils/util-shadow',
             icon: IconShadow,
             breadcrumbs: false
-        },
-        {
-            id: 'tabler-icons',
-            title: 'Tabler Icons',
-            type: 'item',
-            url: '/icons/tabler-icons',
-            icon:IconCar,
-            breadcrumbs: false
-        },
-        {
-            id: 'material-icons',
-            title: 'Material Icons',
-            type: 'item',
-            url: '/icons/material-icons',
-            breadcrumbs: false
         }
     ]
 };

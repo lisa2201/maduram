@@ -7,8 +7,8 @@ const AppsConst = require('./share/AppsConst')
 
 // routes
 const AuthApi = require('./api/auth.route')
-
 const BrandApi = require('./api/brand.route')
+const PropertyApi = require('./api/property.route')
 
 // get db connection
 require("./config/database").connect();
@@ -41,6 +41,7 @@ app.get('/', function (request, response) {
 
 app.use('/',AuthApi)
 app.use('/brand', BrandApi)
+app.use('/property',PropertyApi)
 
 app.listen(process.env.PORT, () => {
     console.log('Server running on http://127.0.0.1:' + process.env.PORT)

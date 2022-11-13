@@ -18,6 +18,19 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { CreateBrandService, getAllBrand } from 'service/brand/brand.service';
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import CodePostal from 'assets/postal/france.json';
+import { CreatePropertyService, deleteProps, getAllProperty } from 'service/property/property.service';
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
 
 function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
@@ -40,6 +53,7 @@ export default function Property() {
 
     const [brand, setBrand] = useState('');
     const [model, setModel] = useState('');
+    const [img, setImg] = useState('');
     const [desc, setDesc] = useState('');
     const [price, setPrice] = useState('');
     const [seat, setSeat] = useState('');
@@ -51,7 +65,10 @@ export default function Property() {
     const [message, setMessage] = useState('');
     const [property, setProperty] = useState([]);
 
-    const [brandList, setBrandList] = useState([])
+    const [brandList, setBrandList] = useState([]);
+
+    const [codePostal, setPostal] = React.useState('');
+    const [filterData, setFilterData] = useState([]);
 
 
     React.useEffect(() => {
@@ -63,7 +80,27 @@ export default function Property() {
             console.log(brandList);
         }
 
+        const getAllProperties = async () => {
+            const property = await getAllProperty();
+
+            setProperty(property.data)
+        }
+
+        const getFilterData = () => {
+            let filterData = CodePostal.filter(data => {
+                if(data.fields.code_postal.startsWith('95')){
+                    return data
+                }
+            });
+
+            setFilterData(filterData)
+        }
+
+        getFilterData();
+
         getAllBrands();
+
+        getAllProperties();
 
     }, []);
 
@@ -72,7 +109,10 @@ export default function Property() {
     };
 
     const handleClose = () => {
+        resetForm();
         setOpen(false);
+
+
     };
 
     async function handleSubmit(event) {
@@ -85,32 +125,39 @@ export default function Property() {
             laggage: laggage,
             price: price,
             seat: seat,
-            desc: desc
+            desc: desc,
+            location:codePostal,
+            img: img
         }
 
         console.log(data);
 
-        // const res = await CreateBrandService(data);
+        const res = await CreatePropertyService(data);
 
-        // console.log(res);
+        console.log(res);
 
-        // if (res.data) {
+        if (res.data) {
 
-        //     setMessage('Successfully created')
-        //     setSnack(true)
-        //     setMessage(res.message)
-        //     setBrand(res.data)
-        //     setOpen(false);
+            setMessage('Successfully created')
+            setSnack(true)
+            setMessage(res.message)
+            setProperty(res.data)
+            setOpen(false);
 
-        //     setTimeout(() => {
-        //         setSnack(false)
-        //     }, 2000);
+            setTimeout(() => {
+                setSnack(false)
+            }, 2000);
 
-        // } else {
+        } else {
 
-        //     console.log('error');
-        // }
+            console.log('error');
+        }
 
+        resetForm();
+
+    }
+
+    const resetForm = ()=> {
         setBrand('')
         setDesc('')
         setFuel('')
@@ -119,12 +166,30 @@ export default function Property() {
         setGear('')
         setLaggage('')
         setModel('')
-
+        setImg('')
+        setPostal('')
+        setFuel('')
+        setGear('')
     }
-    function deleteData() {
 
-        alert('coming soon');
-    }
+    async function deleteProperty( data) {
+
+        const res = await deleteProps(data);
+
+        console.log(res);
+
+        if (res) {
+
+            setProperty(res)
+
+        } else {
+
+            console.log('error');
+        }
+
+    };
+
+    
 
     function edit() {
 
@@ -145,26 +210,48 @@ export default function Property() {
                             <Table sx={{ minWidth: 650 }} stickyHeader aria-label="sticky table">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Dessert (100g serving)</TableCell>
-                                        <TableCell align="right">Calories</TableCell>
-                                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                                        <TableCell>Brand</TableCell>
+                                        <TableCell align="right">model</TableCell>
+                                        <TableCell align="right">description</TableCell>
+                                        <TableCell align="right">fuel</TableCell>
+                                        <TableCell align="right">type of gear</TableCell>
+                                        <TableCell align="right">laggage</TableCell>
+                                        <TableCell align="right">No of seat</TableCell>
+                                        <TableCell align="right">image</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {rows.map((row) => (
+                                    {property.map((row) => (
                                         <TableRow
-                                            key={row.name}
+                                            key={row.id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
                                             <TableCell component="th" scope="row">
+                                                {row.brand.name}
+                                            </TableCell>
+                                            <TableCell component="th" scope="row">
                                                 {row.name}
                                             </TableCell>
-                                            <TableCell align="right">{row.calories}</TableCell>
-                                            <TableCell align="right">{row.fat}</TableCell>
-                                            <TableCell align="right">{row.carbs}</TableCell>
-                                            <TableCell align="right">{row.protein}</TableCell>
+                                            <TableCell align="right">{row.desc}</TableCell>
+                                            <TableCell align="right">{row.fuel}</TableCell>
+                                            <TableCell align="right">{row.gear_type}</TableCell>
+                                            <TableCell align="right">{row.laggage}</TableCell>
+                                            <TableCell align="right">{row.seat}</TableCell>
+                                            <TableCell align="right">
+                                                <img src={row.img_path} style={{height:'50px', width:'100px'}}>
+                                                </img>
+                                            </TableCell>
+
+                                            <TableCell align="right">
+                                            <Button variant="contained" style={{marginRight:'12px', backgroundColor:'green'}} >Edit</Button>
+                                            <Button variant="contained"  style={{marginRight:'12px', backgroundColor:'red'}}
+                                            onClick={() => {
+
+                                                deleteProperty(row._id)
+                                                
+                                            }}>Delete</Button>
+
+                                            </TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
@@ -184,7 +271,7 @@ export default function Property() {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Use Google's location service?"}
+                   Create new property
                 </DialogTitle>
                 <DialogContent>
 
@@ -223,6 +310,45 @@ export default function Property() {
                                 </FormControl>
                             </Grid>
 
+                            <Grid item xs={12} sm={12}>
+                                <FormControl fullWidth>
+                                    <InputLabel >Image Path</InputLabel>
+                                    <OutlinedInput
+                                        type="text"
+                                        value={img}
+                                        name="image Path"
+                                        onChange={(e) => setImg(e.target.value)}
+                                        label="Image path"
+                                        inputProps={{}}
+                                    />
+
+                                </FormControl>
+                            </Grid>
+
+                            <Grid item xs={12} sm={12}>
+                            <FormControl fullWidth sx={{ m: 1 }} variant="outlined">
+                                <Select
+                                    placeholder='postal code'
+                                    id="demo-multiple-name"
+                                    label="postal code"
+                                    onChange={(e) => setPostal(e.target.value)}
+                                    value={codePostal}
+                                    input={<OutlinedInput label="Name" />}
+                                    MenuProps={MenuProps}
+                                >
+                                    {filterData.map((postal) => (
+                                        <MenuItem
+                                            key={postal.recordid}
+                                            value={postal.fields.code_postal}
+                                        >
+                                            {`${postal.fields.code_postal}-${postal.fields.libelle_d_acheminement}`}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                            </Grid>
+
+
                             <Grid item xs={12} sm={6}>
                                 <FormControl fullWidth>
                                     <InputLabel >Description</InputLabel>
@@ -240,7 +366,7 @@ export default function Property() {
 
                             <Grid item xs={12} sm={6}>
                                 <FormControl fullWidth>
-                                    <InputLabel >Price per day</InputLabel>
+                                    <InputLabel >Price per day (Є)</InputLabel>
                                     <OutlinedInput
                                         type="text"
                                         value={price}

@@ -1,13 +1,16 @@
 const express = require('express')
 require('dotenv').config()
 
-const brandModel = require('../models/brand.model')
+const propertyModel = require('../models/property.model')
 const AppsConst = require('../share/AppsConst')
 const Response = require('../share/Response')
 const Router = express.Router()
 
 Router.post('/create-property', async (req, res) => {
     
+    console.log('====================================');
+    console.log(req.body);
+    console.log('====================================');
     const brand = req.body.brand;
     const model = req.body.model;
     const desc = req.body.desc;
@@ -15,11 +18,13 @@ Router.post('/create-property', async (req, res) => {
     const seat = req.body.seat;
     const laggage = req.body.laggage;
     const fuel = req.body.fuel;
+    const codePostal = req.body.location;
     const gear = req.body.desc;
+    const img = req.body.img;
 
 
     try {
-        const Brand = new brandModel({
+        const Property = new propertyModel({
             name: model,
             desc: desc,
             brand:brand,
@@ -28,17 +33,23 @@ Router.post('/create-property', async (req, res) => {
             gear_type: gear,
             laggage:laggage,
             price_per_day: price,
+            img_path:img,
+            code_postal:codePostal,
+            fuel:fuel
             
         })
 
-        const brand = await Brand.save()
+        const property = await Property.save()
 
+        console.log('====================================');
+        console.log(property);
+        console.log('====================================');
+        const get_all_property = await propertyModel.find({}).populate('brand')
 
-        const get_all_brand = await brandModel.find({})
-
+        
         return res.status(AppsConst.AppsConst.RequestType.CODE_200).json({
             message: Response.success_create,
-            data: get_all_brand
+            data: get_all_property
         })
 
     } catch (error) {
@@ -58,9 +69,9 @@ Router.get('/get-all-property', async (req, res) => {
     try {
 
         // loading comment with created_by (user_id)
-        const brand = await brandModel.find({})
+        const property = await propertyModel.find({}).populate('brand')
 
-        if (!brand) {
+        if (!property) {
 
             return res.status(AppsConst.AppsConst.RequestType.CODE_200).json({
                 message: 'No data',
@@ -71,7 +82,7 @@ Router.get('/get-all-property', async (req, res) => {
         
         return res.status(AppsConst.AppsConst.RequestType.CODE_200).json({
             message: Response.success_request,
-            data: brand
+            data: property
 
         })
 
@@ -91,17 +102,17 @@ Router.get('/get-all-property', async (req, res) => {
 
 
 
-Router.get('/delete-property', async (req, res) => {
+Router.get('/delete', async (req, res) => {
 
     try {
 
         const id = req.query.index;
        
-        const deletebrand = await brandModel.findByIdAndDelete(id);
+        const deletebrand = await propertyModel.findByIdAndDelete(id);
 
-        const brand = await brandModel.find({})
+        const property = await propertyModel.find({}).populate('brand')
 
-        if (!brand) {
+        if (!property) {
 
             return res.status(AppsConst.AppsConst.RequestType.CODE_200).json({
                 message: 'No data',
@@ -110,11 +121,11 @@ Router.get('/delete-property', async (req, res) => {
             })
         }
 
-        const brandArray = [];
+        const propertyArr = [];
         
         return res.status(AppsConst.AppsConst.RequestType.CODE_200).json({
             message: Response.success_request,
-            data: brand
+            data: property
 
         })
 

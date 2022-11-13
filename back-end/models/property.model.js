@@ -25,6 +25,12 @@ const propertySchema = new mongoose.Schema({
     price_per_day: {
         type: String,
     },
+    img_path: {
+        type: String,
+    },
+    code_postal: {
+        type: String,
+    },
 }, {
     timestamps: {
         createdAt: 'created_at',

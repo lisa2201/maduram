@@ -46,7 +46,6 @@ Router.get('/get-all-brand', async (req, res) => {
     try {
         console.log('get all brand');
 
-        // loading comment with created_by (user_id)
         const brand = await brandModel.find({})
 
         if (!brand) {
