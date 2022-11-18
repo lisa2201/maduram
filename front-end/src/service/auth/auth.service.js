@@ -84,8 +84,8 @@ export const clearAuthService = async ()=> {
     try {
 
         console.log('auth fn working');
-        localStorage.removeItem(AppsConst.token)
-        localStorage.removeItem(AppsConst.isAuth)
+        sessionStorage.removeItem(AppsConst.token)
+        sessionStorage.removeItem(AppsConst.isAuth)
     }
     catch(err){
         console.log(err);

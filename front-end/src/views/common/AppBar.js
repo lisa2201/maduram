@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import DirectionsCarFilledSharpIcon from '@mui/icons-material/DirectionsCarFilledSharp';
 import { AppsConst } from 'shared/AppsConst';
 import { logoutService } from 'service/auth/auth.service';
 import { NavLink } from 'react-router-dom';
@@ -24,15 +25,15 @@ const settings = ['Profile', 'Account', 'Logout'];
 const AppBarMain = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const isLoged = localStorage.getItem(AppsConst.token) ? true : false;
+    const isLoged = sessionStorage.getItem(AppsConst.token) ? true : false;
 
-    const authUser = isLoged ? localStorage.getItem(AppsConst.userName) : "M";
+    const authUser = isLoged ? sessionStorage.getItem(AppsConst.userName) : "M";
 
     const navigate = useNavigate();
 
     async function logoutHndle() {
         const response = logoutService();
-        localStorage.clear();
+        sessionStorage.clear();
 
         navigate("/pages/login/login3");
 
@@ -59,7 +60,7 @@ const AppBarMain = () => {
             <AppBar position="static">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                        <DirectionsCarFilledSharpIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                         <Link to='/home' style={{ textDecoration: 'none', color: 'white'}}>
 
                         <Typography
@@ -124,7 +125,7 @@ const AppBarMain = () => {
                                 </MenuItem>
                             </Menu>
                         </Box>
-                        <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                        <DirectionsCarFilledSharpIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                         <Link to='/home' style={{ textDecoration: 'none', color: 'white'}}>
 
                         <Typography

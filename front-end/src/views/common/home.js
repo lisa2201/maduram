@@ -46,6 +46,8 @@ import { date } from "yup";
 import rangeCar from "assets/images/home/rangeCar1.jpg";
 import rangeVan from "assets/images/home/rangeVan.jpg";
 import WithoutLicence from "assets/images/home/WithoutLicence.jpg";
+import rangeRover from "assets/images/gallary/RangeRover.jpg";
+
 
 
 
@@ -124,11 +126,11 @@ export default function SimpleContainer() {
       fontColor: "#c51861",
     },
     {
-      name: "VTC rental",
-      title: "PROFESSIONAL SERVICE",
+      name: "WED rental",
+      title: "WEDDING SERVICE",
       discription:
         "Maduram, official partner of Uber, has set up a series of rental car offers for the VTC market adapted to your activity.",
-      img: "https://www.rentacar.fr/_next/image?url=https%3A%2F%2Frac-production-strapi-uploads.s3.eu-west-3.amazonaws.com%2Fvtc_5736b54535.png&w=828&q=45",
+      img: rangeRover,
       fontColor: "#c51861",
     },
     {
@@ -137,7 +139,7 @@ export default function SimpleContainer() {
       discription:
         "With the one-way ticket, rent your vehicle in one agency and return it in another!",
       img: "https://www.rentacar.fr/_next/image?url=https%3A%2F%2Frac-production-strapi-uploads.s3.eu-west-3.amazonaws.com%2FGroupe_9417_2x_aa472c8c95.webp&w=828&q=45",
-      fontColor: "#0069b4",
+      fontColor: "#c51861",
     },
     {
       name: "Rental Without License",
@@ -145,7 +147,7 @@ export default function SimpleContainer() {
       discription:
         "Maduram now offers car rental without a gas, electric or even utility license.",
       img: "https://www.rentacar.fr/_next/image?url=https%3A%2F%2Frac-production-strapi-uploads.s3.eu-west-3.amazonaws.com%2FImage_23_2x_026ab89def.webp&w=828&q=45",
-      fontColor: "#0069b4",
+      fontColor: "#c51861",
     },
   ];
 

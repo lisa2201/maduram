@@ -73,10 +73,10 @@ const FirebaseLogin = ({ ...others }) => {
 
         if (res.token) {
 
-            localStorage.setItem(AppsConst.isAuth, true);
-            localStorage.setItem(AppsConst.token, res.token);
-            localStorage.setItem(AppsConst.authId, res.user._id);
-            localStorage.setItem(AppsConst.userName, res.user.first_name);
+            sessionStorage.setItem(AppsConst.isAuth, true);
+            sessionStorage.setItem(AppsConst.token, res.token);
+            sessionStorage.setItem(AppsConst.authId, res.user._id);
+            sessionStorage.setItem(AppsConst.userName, res.user.first_name);
 
             if(res.user.type !== 'USER'){
 

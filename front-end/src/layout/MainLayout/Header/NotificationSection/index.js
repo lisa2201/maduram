@@ -28,7 +28,6 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
 import NotificationList from './NotificationList';
-
 // assets
 import { IconBell } from '@tabler/icons';
 
@@ -122,6 +121,10 @@ const NotificationSection = () => {
                         <IconBell stroke={1.5} size="1.3rem" />
                     </Avatar>
                 </ButtonBase>
+
+                <Link to="/home">
+                    <Button>Home</Button>
+                </Link>
             </Box>
             <Popper
                 placement={matchesXs ? 'bottom' : 'bottom-end'}

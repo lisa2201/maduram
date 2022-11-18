@@ -2,7 +2,7 @@ import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import gallaryCover from 'assets/images/galary-cover.jpeg';
+import gallaryCover from 'assets/images/gallary/gcover.jpg';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -28,7 +28,7 @@ import audiSmoke from 'assets/images/gallary/audi-smoke.jpeg';
 import bmwLeaves from 'assets/images/gallary/bmw-leave.jpeg';
 import bmwRed from 'assets/images/gallary/bmw-red.jpeg';
 import { height } from '@mui/system';
-
+import './style/custom.style.scss'
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -104,7 +104,7 @@ export default function Gallary() {
         <>
             <React.Fragment>
                 <CssBaseline />
-                <img src={gallaryCover} style={{ width: '100%', height: '620px', boxShadow: '0.5', }} />
+                <img src={gallaryCover} className = "img-gallary"/>
                 <Container style={{ maxWidth: '100%' }}>
 
                     <Grid container spacing={2} style={{ marginTop: '16px' }}>
