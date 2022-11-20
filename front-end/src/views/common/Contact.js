@@ -33,7 +33,7 @@ export default function Contact() {
 
                     <Grid container spacing={2} style={{ marginTop: '16px' }}>
                     <Grid item xs={12} sm={12} md={12} lg={12}>
-                        < img src={contactImgCar} style={{width:'100%', height:'600px'}} />
+                        < img src={contactImgCar} style={{width:'100%', height:'37vw'}} />
                     </Grid>
 
                         <Grid item xs={12} sm={6} md={6} lg={6} style={{background: 'aliceblue' }}>

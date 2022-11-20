@@ -46,10 +46,11 @@ import { date } from "yup";
 import rangeCar from "assets/images/home/rangeCar1.jpg";
 import rangeVan from "assets/images/home/rangeVan.jpg";
 import WithoutLicence from "assets/images/home/WithoutLicence.jpg";
-import rangeRover from "assets/images/gallary/RangeRover.jpg";
-
-
-
+// import rangeRover from "assets/images/gallary/RangeRover.jpg";
+import wedding from "assets/images/gallary/wedding.jpg";
+import professional from "assets/images/gallary/camion.jpg";
+import oneWay from "assets/images/gallary/oneway.jpg";
+import sanspermis from "assets/images/gallary/without.jpg";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -122,15 +123,15 @@ export default function SimpleContainer() {
       title: "PROFESSIONAL SERVICE",
       discription:
         "Maduram has been supporting you in the B to B sector for 20 years, and offers a quality car and utility rental service adapted to your activity.",
-      img: "https://www.rentacar.fr/_next/image?url=https%3A%2F%2Frac-production-strapi-uploads.s3.eu-west-3.amazonaws.com%2FImage_15_2x_c0d977077b.png&w=828&q=45",
+      img: professional,
       fontColor: "#c51861",
     },
     {
       name: "WED rental",
       title: "WEDDING SERVICE",
       discription:
-        "Maduram, official partner of Uber, has set up a series of rental car offers for the VTC market adapted to your activity.",
-      img: rangeRover,
+        "Make your wedding memorable from start to finish for you and your loved ones. We put at your disposal our range of luxury vehicles to accompany you in what will be one of the most beautiful events of your life, your wedding..",
+      img: wedding,
       fontColor: "#c51861",
     },
     {
@@ -138,7 +139,7 @@ export default function SimpleContainer() {
       title: "SPECIAL SERVICE",
       discription:
         "With the one-way ticket, rent your vehicle in one agency and return it in another!",
-      img: "https://www.rentacar.fr/_next/image?url=https%3A%2F%2Frac-production-strapi-uploads.s3.eu-west-3.amazonaws.com%2FGroupe_9417_2x_aa472c8c95.webp&w=828&q=45",
+      img: oneWay,
       fontColor: "#c51861",
     },
     {
@@ -146,7 +147,7 @@ export default function SimpleContainer() {
       title: "SPECIAL SERVICE",
       discription:
         "Maduram now offers car rental without a gas, electric or even utility license.",
-      img: "https://www.rentacar.fr/_next/image?url=https%3A%2F%2Frac-production-strapi-uploads.s3.eu-west-3.amazonaws.com%2FImage_23_2x_026ab89def.webp&w=828&q=45",
+      img: sanspermis,
       fontColor: "#c51861",
     },
   ];
@@ -157,7 +158,7 @@ export default function SimpleContainer() {
       title: "Our types of cars",
       discription:
         "Book a car adapted to your budget and your travel needs on the roads alone, as a couple, as a family or in a group.",
-      img: rangeCar,//"https://www.rentacar.fr/_next/image?url=https%3A%2F%2Frac-production-strapi-uploads.s3.eu-west-3.amazonaws.com%2F1_c7bf10659b.png&w=384&q=45",
+      img: rangeCar, //"https://www.rentacar.fr/_next/image?url=https%3A%2F%2Frac-production-strapi-uploads.s3.eu-west-3.amazonaws.com%2F1_c7bf10659b.png&w=384&q=45",
       fontColor: "#c51861",
     },
     {
@@ -221,7 +222,6 @@ export default function SimpleContainer() {
       });
 
       setProperties(filterProps);
-
     } else {
       console.log("error");
     }
