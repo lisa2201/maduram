@@ -37,7 +37,7 @@ const dashboard = {
             id: 'order',
             title: 'Order',
             type: 'item',
-            url: '/utils/util-shadow',
+            url: '/utils/order',
             icon: IconShadow,
             breadcrumbs: false
         }
